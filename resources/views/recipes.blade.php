@@ -66,11 +66,16 @@
                             @endforeach
                         </td>
                     </tr>
+
                 @endforeach
                 </tbody>
+
             </table>
         </div>
 
+        <div class="mt-2 ml-2 mr-2">
+            {{$recipes->links()}}
+        </div>
 
     </div>
 </body>

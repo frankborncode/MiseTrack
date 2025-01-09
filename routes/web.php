@@ -14,7 +14,7 @@ Route::get('/recipe', function () {
 
 Route::get('/recipes', function () {
 
-    $recipes = recipes::paginate(5);
+    $recipes = recipes::paginate(1);
 
     return view('recipes', ['recipes' => $recipes]);
 });
