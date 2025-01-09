@@ -23,6 +23,7 @@
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="/" class=" {{request()->is('/') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
                             <a href="/recipe" class=" {{request()->is('create-recipe') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Create Recipe</a>
+                            <a href="/recipes" class=" {{request()->is('recipes') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Recipes</a>
                         </div>
                     </div>
                 </div>
@@ -34,6 +35,7 @@
     <x-header>Create Recipe</x-header>
 
     <main class="ml-10 mt-10">
+
         <form class="max-w-sm mx-auto">
             <div class="mb-7">
                 <label for="recipe-title" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">Recipe Title ✏</label>
