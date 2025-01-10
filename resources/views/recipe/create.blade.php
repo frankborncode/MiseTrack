@@ -21,9 +21,10 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="/" class=" {{request()->is('/') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                            <a href="/recipe" class=" {{request()->is('create-recipe') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Create Recipe</a>
-                            <a href="/recipes" class=" {{request()->is('recipes') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Recipes</a>
+                            <a href="/" class="{{ request()->is('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
+                            <a href="/recipe/create" class="{{ request()->is('recipe/create') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Create Recipe</a>
+                            <a href="/recipe" class="{{ request()->is('recipe') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Recipes</a>
+
                         </div>
                     </div>
                 </div>
@@ -36,24 +37,27 @@
 
     <main class="ml-10 mt-10">
 
-        <form class="max-w-sm mx-auto">
+        <form method="POST" action="/recipe" class="max-w-sm mx-auto">
+            @csrf
+
             <div class="mb-7">
-                <label for="recipe-title" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">Recipe Title ✏</label>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">Title ✏</label>
                 <input
                     type="text"
-                    name="recipe_title"
-                    id="recipe-title"
+                    name="title"
+                    id="title"
+                    placeholder="Enter Title"
                     class="block mb-5 bg-gray-700 border rounded-lg text-white w-full p-2"
                     required
                 />
             </div>
 
             <div class="mb-7">
-                <label for="ingredients" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">ingredients 🥔 🥚</label>
+                <label for="ingredients" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">Ingredients 🥔 🥚</label>
                 <textarea
                     id="ingredients"
                     name="ingredients"
-                    placeholder="Enter ingredients"
+                    placeholder="Enter each ingredient on a separate line"
                     rows="10"
                     class="p-2 text-start resize-none border border-gray-300 text-gray-900 rounded-lg block w-full bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                     required
@@ -65,7 +69,7 @@
                 <textarea
                     id="preparation"
                     name="preparation"
-                    placeholder="Describe preparation"
+                    placeholder="Describe preparation steps on a separate line"
                     rows="10"
                     class="p-2 text-start resize-none border border-gray-300 text-gray-900 rounded-lg block w-full bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                     required

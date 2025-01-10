@@ -21,9 +21,10 @@
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                                <a href="/" class=" {{request()->is('/') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                                <a href="/recipe" class=" {{request()->is('recipe') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Create Recipe</a>
-                                <a href="/recipes" class=" {{request()->is('recipes') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Recipes</a>
+                                <a href="/" class="{{ request()->is('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
+                                <a href="/recipe/create" class="{{ request()->is('recipe/create') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Create Recipe</a>
+                                <a href="/recipe" class="{{ request()->is('recipe') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Recipes</a>
+
                             </div>
                         </div>
                     </div>
@@ -48,20 +49,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($recipes as $recipe)
+                @foreach($recipe as $r)
                     <tr>
-                        <td class="border border-gray-300 px-4 py-2 text-left align-text-top">{{ $recipe['recipe_title'] }}</td>
+                        <td class="border border-gray-300 px-4 py-2 text-left align-text-top">{{ $r['title'] }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-left align-text-top">
                             {{-- Split ingredients into list items --}}
                             <ul class="list-disc pl-4">
-                                @foreach(explode("\n", $recipe['ingredients']) as $ingredient)
+                                @foreach(explode("\n", $r['ingredients']) as $ingredient)
                                     <li>{{ $ingredient }}</li>
                                 @endforeach
                             </ul>
                         </td>
                         <td class="border border-gray-300 px-4 py-2 text-left">
                             {{-- Split preparation steps into paragraphs --}}
-                            @foreach(explode("\n", $recipe['preparation']) as $step)
+                            @foreach(explode("\n", $r['preparation']) as $step)
                                 <p class="mb-1">{{ $step }}</p>
                             @endforeach
                         </td>
@@ -74,7 +75,7 @@
         </div>
 
         <div class="mt-2 ml-2 mr-2">
-            {{$recipes->links()}}
+            {{$recipe->links()}}
         </div>
 
     </div>

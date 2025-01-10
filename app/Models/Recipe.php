@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class recipes extends Model
+class Recipe extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'recipes';
+    protected $table = 'recipe';
+
+    protected $fillable = ['title','ingredients','preparation'];
 
 }

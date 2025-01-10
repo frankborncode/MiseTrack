@@ -1,20 +1,41 @@
 <?php
 
-use App\Models\recipes;
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
+use Termwind\Components\Dd;
 
+// Home page
 Route::get('/', function () {
-    return view('index');
+    return view('dashboard');
 });
 
-
+// Index
 Route::get('/recipe', function () {
-    return view('create-recipe');
+
+    $recipe = Recipe::paginate(10);
+
+    return view('recipe.index', ['recipe' => $recipe]);
 });
 
-Route::get('/recipes', function () {
 
-    $recipes = recipes::paginate(1);
+// recipe form
+Route::get('recipe/create', function () {
+    return view('recipe.create');
+});
 
-    return view('recipes', ['recipes' => $recipes]);
+
+// create recipe POST
+Route::post('/recipe', function () {
+    // Validation
+
+    // Create a recipe in the database
+    Recipe::create([
+        'title' => request('title'),
+        'ingredients' => request('ingredients'),
+        'preparation' => request('preparation'),
+    ]);
+
+    // Redirect back to the index page
+
+    return redirect('/');
 });
