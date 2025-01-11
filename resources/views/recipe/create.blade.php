@@ -35,24 +35,26 @@
 
     <x-header>Create Recipe</x-header>
 
-    <main class="ml-10 mt-10">
+    <main class="ml-3 mt-3">
 
         <form method="POST" action="/recipe" class="max-w-sm mx-auto">
             @csrf
 
-            <div class="mb-7">
-                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">Title ✏</label>
+            <div class="mb-1 mt-2">
+                <label for="title" class="block mb-1 text-sm font-medium text-gray-900 text-black font-semibold">Title ✏</label>
                 <input
                     type="text"
                     name="title"
                     id="title"
                     placeholder="Enter Title"
-                    class="block mb-5 bg-gray-700 border rounded-lg text-white w-full p-2"
-                    required
+                    class="block mb-2 bg-gray-700 border rounded-lg text-white w-full p-2"
                 />
             </div>
+            @error('title')
+            {{ $message }}
+            @enderror
 
-            <div class="mb-7">
+            <div class="mb-2 mt-2">
                 <label for="ingredients" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">Ingredients 🥔 🥚</label>
                 <textarea
                     id="ingredients"
@@ -60,11 +62,13 @@
                     placeholder="Enter each ingredient on a separate line"
                     rows="10"
                     class="p-2 text-start resize-none border border-gray-300 text-gray-900 rounded-lg block w-full bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                    required
                 ></textarea>
             </div>
+            @error('ingredients')
+            {{ $message }}
+            @enderror
 
-            <div class="mb-7">
+            <div class="mb-2 mt-2">
                 <label for="preparation" class="block mb-2 text-sm font-medium text-gray-900 text-black font-semibold">Describe Preparation ✏</label>
                 <textarea
                     id="preparation"
@@ -72,13 +76,28 @@
                     placeholder="Describe preparation steps on a separate line"
                     rows="10"
                     class="p-2 text-start resize-none border border-gray-300 text-gray-900 rounded-lg block w-full bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                    required
                 ></textarea>
             </div>
+                @error('preparation')
+                    {{ $message }}
+                @enderror
 
-            <button
-                type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Recipe</button>
+{{--            <div class="mt-5 mb-5">--}}
+{{--                @if($errors->any())--}}
+{{--                    <ul>--}}
+{{--                        @foreach($errors->all() as $error)--}}
+{{--                            <li class="text-red-500 italic">{{$error}}</li>--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
+{{--                @endif--}}
+{{--            </div>--}}
+
+            <div>
+                <button
+                    type="submit"
+                    class="text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Recipe
+                </button>
+            </div>
         </form>
     </main>
 

@@ -27,6 +27,11 @@ Route::get('recipe/create', function () {
 // create recipe POST
 Route::post('/recipe', function () {
     // Validation
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'ingredients' => ['required'],
+        'preparation' => ['required'],
+    ]);
 
     // Create a recipe in the database
     Recipe::create([
